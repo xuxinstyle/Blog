@@ -239,6 +239,6 @@ a {
 		</DIV>
 	</form>
 	<div style="text-align:center;padding-top: 30px">Copyright ©
-		2016-2019 SSM个人博客系统  版权所有 >_<</div>
+		2018 SSM个人博客系统  版权所有 >_<许昕 </div>
 </body>
 </html>

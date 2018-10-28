@@ -13,9 +13,11 @@ import org.springframework.stereotype.Component;
 
 
 import ssm.blog.dao.BlogDao;
+import ssm.blog.entity.Blog;
 import ssm.blog.entity.BlogType;
 import ssm.blog.entity.Blogger;
 import ssm.blog.entity.Link;
+import ssm.blog.entity.PageBean;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.BloggerService;
@@ -32,6 +34,7 @@ public class InitBloggerData implements ServletContextListener, ApplicationConte
 	private static ApplicationContext applicationContext;
 	
 	public void contextInitialized(ServletContextEvent sce) {
+
 		//先获取servlet上下文
 		ServletContext application = sce.getServletContext();
 		//同上，获取博客类别信息service
@@ -42,7 +45,7 @@ public class InitBloggerData implements ServletContextListener, ApplicationConte
 		LinkService linkService = applicationContext.getBean(LinkService.class);
 		//获取博客service
 		BlogService blogService = applicationContext.getBean(BlogService.class);
-		//获取博客信息
+		//获取博客分类信息
 		List<BlogType> blogTypeList = blogTypeService.getBlogTypeData();
 		application.setAttribute("blogTypeList", blogTypeList);
 		//获取博主信息
@@ -55,7 +58,13 @@ public class InitBloggerData implements ServletContextListener, ApplicationConte
 		//获取友情链接信息
 		List<Link> linkList = linkService.getTotalData();
 		application.setAttribute("linkList",linkList);
-		//application.setAttribute("blogList",blogService);
+		//获取博客信息
+		
+		PageBean<Blog> pb=new PageBean<Blog>(1, 10);
+		PageBean<Blog> pbb = blogService.listBlog("", pb);
+		List<Blog> blogList = pbb.getResult();
+		//System.out.println("------"+blogList.size()+"------");
+		application.setAttribute("blogList",blogList);
 
 	}
 

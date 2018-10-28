@@ -32,7 +32,7 @@ public class BloggerController {
         //获取登录实体
         Subject subject = SecurityUtils.getSubject();
         //获取加密后密码
-        String password = MD5Util.md5(blogger.getPassword(), "xp");
+        String password = MD5Util.md5(blogger.getPassword(), "xuxin");//密码加盐
         System.out.println(password);
         //获取用户密码登录token
         UsernamePasswordToken token = new UsernamePasswordToken(blogger.getUserName(), password);
@@ -55,7 +55,7 @@ public class BloggerController {
         Blogger blogger = bloggerService.getBloggerData();
         modelAndView.addObject("blogger", blogger);
         modelAndView.addObject("commonPage", "foreground/blogger/bloggerInfo.jsp");
-        modelAndView.addObject("title", "关于博主 - 熊平的博客");
+        modelAndView.addObject("title", "关于博主 - 许昕的博客");
         modelAndView.setViewName("mainTemp");
         return modelAndView;
     }

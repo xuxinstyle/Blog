@@ -16,12 +16,16 @@ import ssm.blog.util.MD5Util;
 import javax.annotation.Resource;
 
 /**
- * @Author xp
+ * @Author xuxin
  * @Description 自定义realm
- * @Date 2017/4/20 16:45
+ * @Date 
+ * @
  */
 public class MyRealm extends AuthorizingRealm{
 
+	public static void main(String[] args) {
+		System.out.println(MD5Util.md5("admin", "xuxin"));//设置登录密码为admin,加盐xuxin
+	}
     @Resource
     private BloggerService bloggerService;
 

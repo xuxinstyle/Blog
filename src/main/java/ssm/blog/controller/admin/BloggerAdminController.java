@@ -1,6 +1,8 @@
 package ssm.blog.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
+
+import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +19,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @Author xp
@@ -39,15 +42,30 @@ public class BloggerAdminController {
         ResponseUtil.write(response,object);
         return null;
     }
-
+    @Test
+    public void Test() throws IOException{
+    	 File directory = new File("");// 参数为空
+         String courseFile = directory.getCanonicalPath();
+    	String filePath = this.getClass().getResource("/").getPath();//window下
+        //String filePath = PathUtil.getRootPath(); //获取服务器根路径linux下
+        System.out.println(courseFile);
+        String imageName = DateUtil.getCurrentDateStr();        
+       
+    }
     //更新博主信息
     @RequestMapping(value = "save",method = RequestMethod.POST)
     public String saveBlogger(@RequestParam(value = "imageFile",required = false) MultipartFile imageFile, Blogger blogger,
                               HttpServletResponse response) throws Exception {
         //判断是否有上图片 有就更新
         if(!imageFile.isEmpty()){
-            String filePath = PathUtil.getRootPath(); //获取服务器根路径
+        	 File directory = new File("");// 参数为空
+             String filePath = directory.getCanonicalPath();
+        	//String filePath = this.getClass().getResource("/").getPath();//window下
+            //String filePath = PathUtil.getRootPath(); //获取服务器根路径linux下
             String imageName = DateUtil.getCurrentDateStr() + "." + imageFile.getOriginalFilename().split("\\.")[1];
+            /*System.out.println(filePath);
+            System.out.println(imageName);*/
+            
             imageFile.transferTo(new File(filePath + "/src/main/webapp/static/userImages/" + imageName));
             blogger.setImageName(imageName);
         }

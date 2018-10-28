@@ -42,10 +42,10 @@ public class BlogController {
     @RequestMapping("/articles/{id}")
     public ModelAndView details(@PathVariable("id") Integer id,
                                 HttpServletRequest request) {
-
+    	
         ModelAndView modelAndView = new ModelAndView();
         Blog blog = blogService.getById(id); // 根据id获取博客
-
+        System.out.println(id);
         // 获取关键字
         String keyWords = blog.getKeyWord();
         if (StringUtil.isNotEmpty(keyWords)) {
@@ -69,7 +69,7 @@ public class BlogController {
 
         modelAndView.addObject("commentList", commentList);
         modelAndView.addObject("commonPage", "foreground/blog/blogDetail.jsp");
-        modelAndView.addObject("title", blog.getTitle() + " - 熊平的博客");
+        modelAndView.addObject("title", blog.getTitle() + " - 后知、后觉的博客");
 
         // 存入上一篇和下一篇的显示代码
         modelAndView.addObject("pageCode", PageUtil.getPrevAndNextPageCode(
@@ -106,7 +106,7 @@ public class BlogController {
         modelAndView.addObject("q", q); // 用于数据的回显
         modelAndView.addObject("resultTotal", blogIndexList.size()); // 查询到的总记录数
         modelAndView.addObject("commonPage", "foreground/blog/searchResult.jsp");
-        modelAndView.addObject("title", "搜索'" + q + "'的结果 - 熊平的博客");
+        modelAndView.addObject("title", "搜索'" + q + "'的结果 - 后知、后觉的博客");
         modelAndView.setViewName("mainTemp");
         return modelAndView;
     }
