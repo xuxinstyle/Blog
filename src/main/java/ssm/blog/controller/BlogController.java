@@ -28,7 +28,7 @@ import java.util.Map;
  * @Date 
  */
 @Controller
-@RequestMapping(value = "blog")
+@RequestMapping(value = "/blog")
 public class BlogController {
 
     @Resource
@@ -42,10 +42,9 @@ public class BlogController {
     @RequestMapping("/articles/{id}")
     public ModelAndView details(@PathVariable("id") Integer id,
                                 HttpServletRequest request) {
-    	
+    	System.out.println(id);
         ModelAndView modelAndView = new ModelAndView();
         Blog blog = blogService.getById(id); // 根据id获取博客
-        System.out.println(id);
         // 获取关键字
         String keyWords = blog.getKeyWord();
         if (StringUtil.isNotEmpty(keyWords)) {

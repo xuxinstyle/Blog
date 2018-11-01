@@ -9,9 +9,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCore.js"></script>
+        src="${pageContext.request.contextPath}/static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCore.js">
+	        
+</script>
+<script language="javascript">
+	function loadimage(){
+		document.getElementById("randImage").src = document
+		.getElementById("randImage").src+"?nocache"+new Date.getTime();
+	}
+</script>
 <link rel="stylesheet"
       href="fw">
+      
 <script>
     SyntaxHighlighter.all();//代码高亮
     /**
@@ -69,7 +78,7 @@
     <div class="xian" style="clear: both;margin: 0 auto; border-top:1px solid #ddd"></div>
     <!-- 博客作者以及转载声明 -->
     <div style="line-height: 3;background-color:#F8F8FF;">
-        <span style="color: #8b2323">作者：熊平&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊重博主原创文章，转载请注明文章出于此处。</span>
+        <span style="color: #8b2323">作者：后知、后觉&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊重博主原创文章，转载请注明文章出于此处。</span>
     </div>
     <!-- 水平分割线 -->
     <div class="xian" style="margin: 0 auto; border-top:1px solid #ddd"></div>

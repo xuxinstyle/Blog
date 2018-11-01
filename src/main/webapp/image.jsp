@@ -1,8 +1,16 @@
 <%@ page contentType="image/jpeg"
 	import="java.awt.*,
-java.awt.image.*,java.util.*,javax.imageio.*"
-	pageEncoding="utf-8"%>
-<%!Color getRandColor(int fc, int bc) {
+            java.awt.image.*,
+            java.util.*,
+            javax.imageio.*,
+			java.util.Random"
+			
+     %>
+    
+	
+<% 
+//pageEncoding="utf-8" 
+Color getRandColor(int fc,int bc){
 		Random random = new Random();
 		if (fc > 255)
 			fc = 255;
@@ -12,14 +20,14 @@ java.awt.image.*,java.util.*,javax.imageio.*"
 		int g = fc + random.nextInt(bc - fc);
 		int b = fc + random.nextInt(bc - fc);
 		return new Color(r, g, b);
-	}%>
-<%
+	}
+ 
 	out.clear();
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
 	response.setDateHeader("Expires", 0);
 	int width = 60, height = 20;
-	BufferedImage images = new BufferedImage(width, height,
+	BufferedImage image = new BufferedImage(width, height,
 			BufferedImage.TYPE_INT_RGB);
 	Graphics g = image.getGraphics();
 	Random random = new Random();
